@@ -77,6 +77,47 @@ This will:
 
 That's all you need to get your bootloader up and running in an emulator.
 
+### 🛠️ Compilation steps
+
+Let’s go through the compilation process — for your understanding and mine.
+#### 🔗 Linker
+
+Without an operating system, you must explicitly tell the linker where to place each section of your program (.text, .data, .bss, etc.).
+
+For instance, the .text section might start at 0x08000000 (STM32 flash memory), or at 0x00000000 when running on QEMU.
+
+That means you fully control the memory layout — because there’s no OS to do it for you.
+#### 📦 ELF (Executable and Linkable Format)
+
+The compiler first generates an object file (.o). Then the linker uses your .ld script to produce an .elf file — a complete binary with sections, symbols, and metadata.
+
+This .elf file can be used:
+
+- to run the program in QEMU,
+- or to inspect it with tools like readelf, objdump, or gdb.
+
+### 💾 .BIN file (raw firmware)
+
+The .bin file is a raw binary image — it contains nothing but the bytes that will be loaded into flash memory.
+
+You generate it from the .elf using objcopy, like so:
+```bash
+arm-none-eabi-objcopy -O binary boot.elf boot.bin
+```
+This file is what you'd flash onto real hardware.
+You can:
+
+- run the .elf in QEMU (for debugging),
+- or flash the .bin to your STM32 board.
+
+We can now code our bootloader (but no ASM yet :) )
+
+
+
+
+
+
+
 
 
 
