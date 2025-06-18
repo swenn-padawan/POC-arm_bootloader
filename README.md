@@ -37,6 +37,45 @@ To launch our setup you just have to copy my flake.nix and run this command:
 nix develop
 ```
 
+##### Help to install nix
+Run this command to install nix
+```bash
+sh <(curl -L https://nixos.org/nix/install)
+```
+Once installed, you can restart your session or run:
+```bash
+. /etc/profile.d/nix.sh
+```
+When you are going to run `nix develop`, you can encounter an error that tells to enable experimental-features.
+To prevent this, you can run:
+```bash
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
+```
+It will had the nix-command and flakes features by default.
+
+GG! Now you have a functionnal shell with all the packages required !
+
+### 🛠️ Makefile
+
+A Makefile automates the compilation steps so you don’t have to write long commands every time.
+I won’t go into the details of how Makefiles work, but if you’re serious about low-level development, you should definitely learn it.
+
+I’ve written this one with comments to help you understand what's going on.
+You can either study and reproduce it, or just use it as-is and follow along with this PoC.
+
+To build and run the bootloader, simply run:
+```bash
+make && make run
+```
+
+This will:
+- assemble the code
+- link it using the linker script
+- generate a .bin file
+- and launch it in QEMU using the make run command
+
+That's all you need to get your bootloader up and running in an emulator.
 
 
 
