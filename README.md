@@ -61,9 +61,6 @@ GG! Now you have a functionnal shell with all the packages required !
 A Makefile automates the compilation steps so you don’t have to write long commands every time.
 I won’t go into the details of how Makefiles work, but if you’re serious about low-level development, you should definitely learn it.
 
-I’ve written this one with comments to help you understand what's going on.
-You can either study and reproduce it, or just use it as-is and follow along with this PoC.
-
 To build and run the bootloader, simply run:
 ```bash
 make && make run
