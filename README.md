@@ -109,6 +109,35 @@ You can:
 
 We can now code our bootloader (but no ASM yet :) )
 
+### Linker.ld
+As i said before we need to write our own linker script, again i'm not going to explain all of the details here but you can check these links: <a href=https://allthingsembedded.com/post/2020-04-11-mastering-the-gnu-linker-script>Mastering GNU linker script</a> and
+<a href="https://youtu.be/B7oKdUvRhQQ?si=KIyGArj5bSKRJDit">Bare metal embedded lecture-4: Writing linker scripts and section placement</a>
+
+I will just explain my file a little bit:
+```.ld
+ENTRY(Reset_Handler)
+```
+This defines the entry point of the program — it's the symbol where the processor starts executing after a reset.
+In a Cortex-M microcontroller, this should correspond to the reset handler listed in the vector table (the second word after the initial stack pointer).
+
+As for the SECTIONS part, the linker script creates the different memory sections of the firmware:
+
+- `.text` — contains the code and constants, typically placed in FLASH
+
+- `.bss` — holds uninitialized global/static variables, allocated in RAM
+
+- `.data` — for initialized global/static variables, loaded from FLASH to RAM at startup
+
+- `.stack` — reserves space for the stack in RAM
+
+Some special keywords are used:
+
+NOLOAD: tells the linker not to include this section in the output binary's loadable segments, because it’s going to be zero-initialized or reserved at runtime (e.g., .bss, .stack)
+
+KEEP(...): prevents the linker from discarding sections (like the vector table) even if they appear unused — crucial for startup code
+
+
+
 
 
 
