@@ -136,6 +136,9 @@ NOLOAD: tells the linker not to include this section in the output binary's load
 
 KEEP(...): prevents the linker from discarding sections (like the vector table) even if they appear unused — crucial for startup code
 
+Now we can code in pure ARM assembly !
+<a href="https://documentation-service.arm.com/static/5efefb97dbdee951c1cd5aaf">ARM Cortex Programming Guide PDF</a>
+
 
 
 
