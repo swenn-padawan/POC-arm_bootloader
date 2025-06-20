@@ -17,8 +17,7 @@
           name = "arm-bootloader-shell";
           buildInputs = [
             pkgs.qemu           # For emulating ARM
-            pkgs.arm-none-eabi-gcc
-            pkgs.arm-none-eabi-binutils
+            pkgs.gcc-arm-embedded
             pkgs.gnumake        # If you use Makefile
           ];
 

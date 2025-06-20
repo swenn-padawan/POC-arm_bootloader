@@ -27,7 +27,7 @@ CFLAGS			:= -ffreestanding -nostdlib -g
 
 QEMU			:= qemu-system-arm
 
-QEMU_FLAGS 		:= -M stm32-p103 -nographic -serial stdio -bios
+QEMU_FLAGS 		:= -M stm32vldiscovery -nographic -bios
 
 #-Rules------------------------------------------------------------------------#
 
